@@ -178,3 +178,7 @@ if (( ${+_comps[kubectl]} )); then
   compdef kjx=kubectl
   compdef ky=kubectl
 fi
+
+# Resource Usage
+alias ktpo='kubectl top pod'
+alias ktno='kubectl top node'
