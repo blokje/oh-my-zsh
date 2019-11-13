@@ -131,6 +131,9 @@ plugins=(... kubectl)
 | kej      | `kubectl edit job`                                      | Edit a Job in details                                                                            |
 | kdj      | `kubectl describe job`                                  | Describe the Job                                                                                 |
 | kdelj    | `kubectl delete job`                                    | Delete the Job                                                                                   |
+|          |                                                         | **Display Resource (CPU/Memory/Storage) usage**                                                  |
+| ktno     | `kubectl top node`                                      | Display Resource (CPU/Memory/Storage) usage of nodes                                             |
+| ktpo     | `kubectl top pod`                                       | Display Resource (CPU/Memory/Storage) usage of pods                                              |
 
 ## Wrappers
 
@@ -139,3 +142,4 @@ This plugin provides 3 wrappers to colorize kubectl output in JSON and YAML usin
 - `kj`: JSON, colorized with [`jq`](https://stedolan.github.io/jq/).
 - `kjx`: JSON, colorized with [`fx`](https://github.com/antonmedv/fx).
 - `ky`: YAML, colorized with [`yh`](https://github.com/andreazorzetto/yh).
+
