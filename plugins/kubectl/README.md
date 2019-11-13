@@ -120,6 +120,9 @@ plugins=(... kubectl)
 | kecj    | `kubectl edit cronjob`              | Edit CronJob from the default editor                                                             |
 | kdcj    | `kubectl describe cronjob`          | Describe a CronJob in details                                                                    |
 | kdelcj  | `kubectl delete cronjob`            | Delete the CronJob                                                                               |
+|         |                                     | **Display Resource (CPU/Memory/Storage) usage**                                                  |
+| ktno    | `kubectl top node`                  | Display Resource (CPU/Memory/Storage) usage of nodes                                             |
+| ktpo    | `kubectl top pod`                   | Display Resource (CPU/Memory/Storage) usage of pods                                              |
 
 ## Wrappers
 
@@ -128,3 +131,4 @@ This plugin provides 3 wrappers to colorize kubectl output in JSON and YAML usin
 - `kj`: JSON, colorized with [`jq`](https://stedolan.github.io/jq/).
 - `kjx`: JSON, colorized with [`fx`](https://github.com/antonmedv/fx).
 - `ky`: YAML, colorized with [`yh`](https://github.com/andreazorzetto/yh).
+
