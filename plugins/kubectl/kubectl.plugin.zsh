@@ -193,6 +193,9 @@ kgew() {
     kubectl get events -w -o "${_kge_go_template}" $@
 }
 
+# Cluster Auto Scaler
+alias kgccas="kubectl get configmap -n kube-system cluster-autoscaler-status -o yaml"
+
 # Utility print functions (json / yaml)
 function _build_kubectl_out_alias {
   setopt localoptions norcexpandparam
