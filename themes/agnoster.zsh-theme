@@ -359,11 +359,20 @@ prompt_terraform() {
   prompt_segment magenta yellow "TF: $terraform_info"
 }
 
+prompt_k8s() {
+  (( $+commands[kubectl] )) || return
+  CONTEXT=$(kubectl config current-context)
+  [[ -z "${CONTEXT}" ]] && return
+
+  prompt_segment white blue "K8s: ${CONTEXT}"
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
+  prompt_k8s
   prompt_aws
   prompt_terraform
   prompt_context
