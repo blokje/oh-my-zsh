@@ -191,3 +191,5 @@ kge() {
 kgew() {
     kubectl get events -w -o "${_kge_go_template}" $@
 }
+
+alias kgccas="kubectl get configmap -n kube-system cluster-autoscaler-status -o yaml"
