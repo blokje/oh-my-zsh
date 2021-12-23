@@ -195,8 +195,8 @@ precmd() {
 
 k8s() {
   (( $+commands[kubectl] )) || return
-  local CONTEXT=$(kubectl config current-context)
-  [[ -z "${CONTEXT}" ]] && return
+  local KUBE_CONTEXT=$(kubectl config current-context)
+  [[ -z "${KUBE_CONTEXT}" ]] && return
   local NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}')
 
   local reset_color="%{$reset_color%}"
@@ -204,7 +204,7 @@ k8s() {
   local white="%{$fg_bold[white]%}"
 
   local label="${white}K8S"
-  local context="${cyan}$CONTEXT"
+  local context="${cyan}$KUBE_CONTEXT"
   local namespace="${cyan}(${white}${NAMESPACE}${cyan})"
 
   echo "${label}:${context}${namespace}${reset_color}"
@@ -216,19 +216,19 @@ setopt PROMPT_SUBST;
 
 # timer
 #REF: https://stackoverflow.com/questions/26526175/zsh-menu-completion-causes-problems-after-zle-reset-prompt
-TMOUT=1;
-TRAPALRM() {
-    # $(git_prompt_info) cost too much time which will raise stutters when inputting. so we need to disable it in this occurence.
-    # if [ "$WIDGET" != "expand-or-complete" ] && [ "$WIDGET" != "self-insert" ] && [ "$WIDGET" != "backward-delete-char" ]; then
-    # black list will not enum it completely. even some pipe broken will appear.
-    # so we just put a white list here.
-    if [ "$WIDGET" = "" ] || [ "$WIDGET" = "accept-line" ] ; then
-        zle reset-prompt;
-    fi
-}
+#TMOUT=1;
+#TRAPALRM() {
+#    # $(git_prompt_info) cost too much time which will raise stutters when inputting. so we need to disable it in this occurence.
+#    # if [ "$WIDGET" != "expand-or-complete" ] && [ "$WIDGET" != "self-insert" ] && [ "$WIDGET" != "backward-delete-char" ]; then
+#    # black list will not enum it completely. even some pipe broken will appear.
+#    # so we just put a white list here.
+#    if [ "$WIDGET" = "" ] || [ "$WIDGET" = "accept-line" ] ; then
+#        zle reset-prompt;
+#    fi
+#}
 
 
 # prompt
 # PROMPT='$(real_time) $(login_info) $(directory) $(git_status)$(command_status) ';
 PROMPT='$(real_time) $(directory) $(git_status)$(command_status) ';
-RPROMPT="$(k8s)"
+RPROMPT='$(k8s)'
