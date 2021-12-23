@@ -54,7 +54,11 @@ function directory() {
     # REF: https://stackoverflow.com/questions/25944006/bash-current-working-directory-with-replacing-path-to-home-folder
     local directory="${PWD/#$HOME/~}";
     local color_reset="%{$reset_color%}";
-    echo "${color}[${directory}]${color_reset}";
+    if [[ -z "$SSH_CONNECTION" ]]; then
+        echo "${color}[${directory}]${color_reset}";
+    else
+        echo "${color}[$(hostname -s):${directory}]${color_reset}";
+    fi
 }
 
 
