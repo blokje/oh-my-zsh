@@ -4,7 +4,6 @@ custom/
 # temp files directories
 cache/
 log/
-*.swp
 .DS_Store
 
 # editor configs
@@ -13,3 +12,6 @@ log/
 
 # zcompile cached files
 *.zwc
+
+# Ignore VIM swap files
+.*.swp
