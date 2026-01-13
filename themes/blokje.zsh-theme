@@ -361,11 +361,11 @@ prompt_terraform() {
 
 prompt_k8s() {
   (( $+commands[kubectl] )) || return
-  CONTEXT=$(kubectl config current-context)
-  NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+  CONTEXT=$(kubectl config current-context 2>/dev/null)
   [[ -z "${CONTEXT}" ]] && return
+  NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)
 
-  if [[ "${NAMESPACE}" == "default" ]]; then
+  if [[ -z "${NAMESPACE}" || "${NAMESPACE}" == "default" ]]; then
     prompt_segment white blue "K8s: ${CONTEXT}"
   else
     prompt_segment white blue "K8s: ${CONTEXT}/${NAMESPACE}"
